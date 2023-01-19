@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useDispatch } from "react-redux";
+import { Book } from "./components/Book/Book";
+import { Phone } from "./components/Phone/Phone";
+import { byBook } from "./redux/book/bookAction";
+import { buyPhone } from "./redux/phone/phoneAction";
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  const handleBonus = () => {
+    dispatch(buyPhone())
+    dispatch(byBook())
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Book/>
+      <button onClick={() => handleBonus()} style={{marginTop: '20px'}}>Bonus</button>
+      <Phone/>
     </div>
   );
 }
